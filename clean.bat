@@ -1,8 +1,15 @@
+@shift /0
 @echo off
 
-powershell -Command "Get-AppxPackage xbox | Remove-AppxPackage"
-taskkill /f /im Discord.exe /t
-taskkill /f /im Steam.exe /t
+
+
+taskkill /f /im "Steam.exe" /t /fi "status eq running">nul
+taskkill /f /im EpicGamesLauncher.exe /t /fi status eq running>nul
+
+
+
+RENAME %userprofile%\AppData\Roaming\discord\0.0.309\modules\STARCHARMS_SPOOFER discord_rpc
+
 set hostspath=%windir%\System32\drivers\etc\hosts
 echo 127.0.0.1 xboxlive.com >> %hostspath%
 echo 127.0.0.1 user.auth.xboxlive.com >> %hostspath%
@@ -66,10 +73,16 @@ del /s /q /f %LocalAppData%\FiveM\FiveM.app\caches.XML
 del /s /q /f %LocalAppData%\FiveM\FiveM.app\adhesive.dll
 del /s /q /f %LocalAppData%\FiveM\FiveM.app\discord.dll
 del /s /q /f "%LocalAppData%\FiveM\FiveM.app\crashes\*.*"
-taskkill /f /im Steam.exe /t
+RENAME %userprofile%\AppData\Roaming\discord\0.0.309\modules\discord_rpc STARCHARMS_SPOOFER
+
+
 rmdir /s /q "%LocalAppData%\DigitalEntitlements"
-taskkill /f /im Steam.exe /t
+
 rmdir /s /q %userprofile%\AppData\Roaming\CitizenFX
+
+rmdir /s /q "%LocalAppData%\D3DSCache"
+
+
 set hostspath=%windir%\System32\drivers\etc\hosts
 echo 127.0.0.1 xboxlive.com >> %hostspath%
 echo 127.0.0.1 user.auth.xboxlive.com >> %hostspath%
@@ -116,7 +129,14 @@ del /s /q /f "%LocalAppData%\FiveM\FiveM.app\cfx_curl_x86_64.dll
 del /s /q /f %LocalAppData%\FiveM\FiveM.app\CitizenFX.ini
 del /s /q /f %LocalAppData%\FiveM\FiveM.app\caches.XML
 del /s /q /f %LocalAppData%\FiveM\FiveM.app\adhesive.dll
+
+
 del /s /q /f %LocalAppData%\FiveM\FiveM.app\discord.dll
+RENAME %userprofile%\AppData\Roaming\discord\0.0.309\modules\discord_rpc STARCHARMS_SPOOFER
+
+
+
+
 rmdir /s /q "%LocalAppData%\FiveM\FiveM.app\cache\Browser"
 rmdir /s /q "%LocalAppData%\FiveM\FiveM.app\cache\db"
 rmdir /s /q "%LocalAppData%\FiveM\FiveM.app\cache\dunno"
@@ -128,8 +148,13 @@ rmdir /s /q "%LocalAppData%\FiveM\FiveM.app\cache\authbrowser"
 del /s /q /f "%LocalAppData%\FiveM\FiveM.app\cache\crashometry"
 del /s /q /f "%LocalAppData%\FiveM\FiveM.app\cache\launcher_skip"
 del /s /q /f "%LocalAppData%\FiveM\FiveM.app\cache\launcher_skip_mtl2"
-del /s /q /f "%LocalAppData%\FiveM\FiveM.app\crashes"
-del /s /q /f "%LocalAppData%\FiveM\FiveM.app\logs"
-del /s /q /f "%LocalAppData%\FiveM\FiveM.app\mods"
+
+del /s /q /f "%LocalAppData%\FiveM\FiveM.app\crashes\*.*"
+
+del /s /q /f "%LocalAppData%\FiveM\FiveM.app\logs\*.*"
+
+del /s /q /f "%LocalAppData%\FiveM\FiveM.app\mods\*.*"
+
 
 exit
+
